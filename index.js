@@ -1,10 +1,16 @@
-const express = require('express')
-const path = require('path')
-const PORT = process.env.PORT || 5000
+import routes from './routes'
+import express from 'express'
+const app = express();
 
-express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+const jsonParser = require('body-parser').json;
+const logger = require('morgan');
+
+
+const port = process.env.port || 8080;
+
+app.use(jsonParser());
+app.use('/ifttt', routes);
+
+app.listen(port, () => {
+    console.log(`Web server listening on: ${port}`);
+});
