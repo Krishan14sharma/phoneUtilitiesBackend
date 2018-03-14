@@ -54,7 +54,7 @@ const serverKey="AAAA-PWVphs:APA91bHlTsW9nFTTAVXtDLZreoOzbFOT4ZACL8BvNVPBL1h2cYD
 const notificationPostUrl="https://gcm-http.googleapis.com/gcm/send";
 const hardCodedFCMDeviceKey="excGG_ogIrs:APA91bFjn2jxN8zPLwDBiSGkxGoTDhGpoQ_EPml0RmCzbiXd9VWo2FcjQOVzoRqdGwteC4DD1zhDs9gbWITCkmoEK9fUPQZ_zEZlPbV4L7jJ9kx5D3UmkyJZ8oyVcFZ3xgBm1ZFY8inl";
 
-function sendNotification(res,message) {
+function sendNotification(res,message,id=null,speak=false) {
     let instance = axios.create({
         headers: {
             'Content-Type': 'application/json',
@@ -64,7 +64,9 @@ function sendNotification(res,message) {
     instance.post(notificationPostUrl, {
         "to": hardCodedFCMDeviceKey,
         "data": {
-            "message": message
+            "message": message,
+            "id":id,
+            "speak":speak
         },
     }).then((response) => {
         res.send(response)
@@ -74,7 +76,7 @@ function sendNotification(res,message) {
 }
 
 routes.post('/sendNotification',(req,res)=>{
-    sendNotification(res,"Hi from Iftt");
+    sendNotification(res,"Hi from Iftt",null,true);
 });
 
 
@@ -103,7 +105,8 @@ const uberstatus={
 
 routes.post('/webHook',(req,res)=>{
     let status=req.body.meta.status;
-    sendNotification(res,uberstatus[status])
+    let event_id=req.body.event_id;
+    sendNotification(res,uberstatus[status],event_id,true)
 });
 
 export default routes;
