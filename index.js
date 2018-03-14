@@ -6,7 +6,7 @@ const jsonParser = require('body-parser').json;
 const logger = require('morgan');
 
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3030;
 
 app.use(jsonParser());
 app.use('/ifttt', routes);
