@@ -24,7 +24,7 @@ const uberUrl="https://sandbox-api.uber.com/v1.2/";
 routes.get('/hello', (req, res) => {
     res.json(response);
 });
-routes.get('/bookCab',(req,res)=>{
+routes.get('/bookPoolFromHomeToWork',(req,res)=>{
     let product_id="ed5e79f0-c124-4377-89eb-511cbdeb5fe2";
     let payload={
         product_id:product_id,
