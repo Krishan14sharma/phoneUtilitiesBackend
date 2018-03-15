@@ -26,7 +26,7 @@ uber.get('/bookPoolFromHomeToWork',(req, res)=>{
     }).then((response)=>{
         res.send(response.data)
     }).catch((error)=>{
-        res.send(error)// todo remove
+        res.send(error.message)// todo remove
     })
 });
 
