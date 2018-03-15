@@ -1,6 +1,5 @@
 import uber from './uber/uber'
 import express from 'express'
-import notification from './notification'
 import checkHealth from './checkHealth'
 
 const app = express();
