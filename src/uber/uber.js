@@ -26,21 +26,10 @@ uber.get('/bookPoolFromHomeToWork',(req, res)=>{
     }).then((response)=>{
         res.send(response.data)
     }).catch((error)=>{
-        res.send(error.message)// todo remove
+        //res.send(error.message)// todo remove
+        sendNotification(res,"Sorry, could not book an uber")
     })
 });
-
-// {
-//     "event_id": "2a2f3da4-14ac-4056-bbf2-d0b9cdcb0777",
-//     "event_time": 1427343990,
-//     "event_type": "requests.receipt_ready",
-//     "meta": {
-//     "user_id": "d13dff8b",
-//         "resource_id": "d0b9cdc",
-//         "status": "ready"
-// },
-//     "resource_href": "https://api.uber.com/v1.2/requests/d0b9cdc/receipt"
-// }
 
 const uberStatus={
     processing:"The Request is matching to the most efficient available driver",
