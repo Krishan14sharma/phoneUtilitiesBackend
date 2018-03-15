@@ -4,8 +4,6 @@ import sendNotification from "../notification";
 import {homeAddress,officeAddress} from './LatLng'
 
 const uber = express.Router();
-//todo
-const accessToken = "Bearer KA.eyJ2ZXJzaW9uIjoyLCJpZCI6IkJuL1g0bWJQVHVxN2ZWUExkdkRSNGc9PSIsImV4cGlyZXNfYXQiOjE1MjM2MTcwNDMsInBpcGVsaW5lX2tleV9pZCI6Ik1RPT0iLCJwaXBlbGluZV9pZCI6MX0.FtULoui9-KxdvO4iklbv3NfmX-3JoBUuERzJg-O1cgk";
 const uberUrl="https://sandbox-api.uber.com/v1.2/";
 
 uber.get('/bookPoolFromHomeToWork',(req, res)=>{
@@ -19,7 +17,7 @@ uber.get('/bookPoolFromHomeToWork',(req, res)=>{
         seat_count:2
     };
     let instance = axios.create();
-    instance.defaults.headers.common['Authorization'] = accessToken;
+    instance.defaults.headers.common['Authorization'] = process.env.ACCESS_TOKEN;
     instance.post(uberUrl+'requests/estimate',payload).then((response)=>{
         return response.data.fare.fare_id;
     }).then((fare_id)=>{
