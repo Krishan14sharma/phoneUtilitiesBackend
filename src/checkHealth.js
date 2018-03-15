@@ -1,10 +1,12 @@
 import express from 'express'
 import sendNotification from "./notification";
+import config from './config'
 
 const checkHealth=express.Router();
 const helloResponse={
     'lead':'sherlock',
-    'villian':'moriarity'
+    'villian':'moriarity',
+    'mode':config.app.mode
 };
 
 checkHealth.get('/sendNotification',(req, res)=>{
