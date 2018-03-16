@@ -42,6 +42,16 @@ const uberStatus={
     completed:	""
 };
 
+uber.get('/whereIsMyCab',(req,res)=>{
+    let instance = axios.create();
+    instance.defaults.headers.common['Authorization'] = process.env.ACCESS_TOKEN;
+    instance.get(uberUrl+'requests/current').then((response)=>{
+        let eta=response.data.pickup.eta;
+        sendNotification(res,`Reaching you in ${eta} minutes`,null,true)
+    })
+
+});
+
 uber.post('/webHook',(req, res)=>{
     let status=req.body.meta.status;
     let event_id=req.body.event_id;
