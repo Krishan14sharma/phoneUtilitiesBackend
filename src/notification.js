@@ -22,13 +22,12 @@ function sendNotification(res, message, id=null, speak=false) {
         };
     }else{
         payload =  {
-            "message":{
-            "token":hardCodedFCMDeviceKey,
-                "notification":{
-                "title":"Alert",
+            "to":hardCodedFCMDeviceKey,
+            "notification":
+                {
+                    "title":"Alert",
                     "body":message
-            }
-        }
+                }
         }
     }
 
