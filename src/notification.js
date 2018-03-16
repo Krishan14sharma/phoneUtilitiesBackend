@@ -10,14 +10,30 @@ function sendNotification(res, message, id=null, speak=false) {
             'Authorization': 'key=' + process.env.FIREBASE_SERVER_KEY
         }
     });
-    instance.post(notificationPostUrl, {
-        "to": hardCodedFCMDeviceKey,
-        "data": {
-            "message": message,
-            "id":id,
-            "speak":speak
-        },
-    }).then((response) => {
+    let payload;
+    if(speak){
+        payload =  {
+            "to": hardCodedFCMDeviceKey,
+            "data": {
+                "message": message,
+                "id":id,
+                "speak":speak
+            }
+        };
+    }else{
+        payload =  {
+            "message":{
+            "token":hardCodedFCMDeviceKey,
+                "notification":{
+                "title":"Alert",
+                    "body":message
+            }
+        }
+        }
+    }
+
+
+    instance.post(notificationPostUrl,payload).then((response) => {
         res.send(response)
     }).catch((error) => {
         res.send(error.message);
