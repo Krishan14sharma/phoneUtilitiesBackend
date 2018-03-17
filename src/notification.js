@@ -33,7 +33,9 @@ function sendNotification(res, message, id=null, speak=false) {
 
 
     instance.post(notificationPostUrl,payload).then((response) => {
-        res.send(response)
+        res.json({
+            status:true
+        })
     }).catch((error) => {
         res.send(error.message);
     })
