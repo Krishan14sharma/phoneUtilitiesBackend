@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const notificationPostUrl="https://gcm-http.googleapis.com/gcm/send";
-const hardCodedFCMDeviceKey="excGG_ogIrs:APA91bFjn2jxN8zPLwDBiSGkxGoTDhGpoQ_EPml0RmCzbiXd9VWo2FcjQOVzoRqdGwteC4DD1zhDs9gbWITCkmoEK9fUPQZ_zEZlPbV4L7jJ9kx5D3UmkyJZ8oyVcFZ3xgBm1ZFY8inl";
+const hardCodedFCMDeviceKey="fdlB9t8Kr5Q:APA91bHBhcdNQwdMzAaCKkFpvSXbOD_zCMTAHbezFha6OwDX-NNTGPAo06zb4KogbWqfXkdNI0eX6K9hI3nwn5jkkpNa6QgYjtkqgsqtInuRtgTDYtdEAix_dXH5F5TdKhKatBQkMida";
 
 function sendNotification(res, message, id=null, speak=false) {
     let instance = axios.create({
